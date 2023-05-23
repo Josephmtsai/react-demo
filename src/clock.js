@@ -3,7 +3,6 @@ import './clock.css';
 const Clock = ({ hours = 0, minutes = 0 }) => {
   const [hourHandStyle, setHourHandStyle] = useState({});
   const [minHandStyle, setMinHandStyle] = useState({});
-  const [date] = useState(new Date());
 
   useEffect(() => {
     let hrPosition = (hours * 360) / 12 + (minutes * 360) / (12 * 60);
@@ -20,6 +19,7 @@ const Clock = ({ hours = 0, minutes = 0 }) => {
       {Array.from({ length: 12 }, (_, i) => (
         <div
           className='number'
+          key={i}
           style={{ transform: `rotate(${(i + 1) * 30}deg)` }}
         >
           <div

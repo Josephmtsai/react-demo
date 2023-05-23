@@ -7,6 +7,7 @@ function App() {
 
   useEffect(() => {
     if (input.length === 4) {
+      console.log(input);
       let digits = input.split('').map(Number);
       digits.sort((a, b) => b - a);
 
@@ -16,6 +17,8 @@ function App() {
             let hours = digits[i] * 10 + digits[j];
             let minutes = digits[6 - i - j] * 10 + digits[3 - i - j];
             if (hours < 24 && minutes < 60) {
+              console.log(hours);
+              console.log(minutes);
               setTime({ hours, minutes });
               return;
             }

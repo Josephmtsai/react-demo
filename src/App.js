@@ -10,13 +10,19 @@ function App() {
       let digits = input.split('').map(Number);
       digits.sort((a, b) => b - a);
 
-      let hours = digits[0] * 10 + digits[1];
-      let minutes = digits[2] * 10 + digits[3];
-
-      if (hours >= 24) hours = '0' + digits[0];
-      if (minutes >= 60) minutes = '0' + digits[2];
-      console.log(hours + minutes);
-      setTime({ hours, minutes });
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+          if (j !== i) {
+            let hours = digits[i] * 10 + digits[j];
+            let minutes = digits[6 - i - j] * 10 + digits[3 - i - j];
+            if (hours < 24 && minutes < 60) {
+              setTime({ hours, minutes });
+              return;
+            }
+          }
+        }
+      }
+      setTime({ hours: 0, minutes: 0 });
     }
   }, [input]);
   return (
